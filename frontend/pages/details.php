@@ -29,7 +29,7 @@
         $result->free_result();
         $conn->close();
 
-        // Xử lý ảnh hiển thị
+       
         $imageFile = trim($prod[5]);
         $imagePath = '/DAY5/assets/uploads/' . basename($imageFile);
         if (empty($imageFile)) {
