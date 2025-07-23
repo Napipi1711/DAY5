@@ -1,9 +1,0 @@
-.flying-img {
-  position: fixed;
-  width: 100px;
-  height: 100px;
-  z-index: 9999;
-  transition: all 1s ease-in-out;
-  border-radius: 8px;
-  pointer-events: none;
-}
