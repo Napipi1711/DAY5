@@ -56,6 +56,25 @@
           <li class="nav-item"><a class="nav-link" href="#">Link</a></li>
           <li class="nav-item"><a class="nav-link disabled">Disabled</a></li>
         </ul>
+      <!--Cart-->
+        <div class="d-flex align-items-center me-3">
+         <a class="text-white position-relative text-decoration-none" 
+              id="cart-icon" 
+              data-bs-toggle="offcanvas" 
+              href="#offcanvasCart" 
+              role="button" 
+              aria-controls="offcanvasCart">
+              <i class="fas fa-shopping-cart fa-lg"></i>
+              <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger item-count">
+                <?php
+                session_start();
+                echo isset($_SESSION['cart']) ? array_sum(array_column($_SESSION['cart'], 'quantity')) : 0;
+                ?>
+              </span>
+            </a>
+
+        </div>
+        
         <form class="d-flex" role="search">
           <input class="form-control me-2" type="search" placeholder="Search">
           <button class="btn btn-outline-success" type="submit">Search</button>
