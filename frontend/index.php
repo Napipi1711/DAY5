@@ -6,7 +6,7 @@
   <title>Trang chủ</title>
   
   <?php include_once(__DIR__ . '/../frontend/layouts/partials/header.php'); ?>
- 
+   <link rel="stylesheet" href="css/fly-to-cart.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
@@ -150,6 +150,7 @@ $result = $conn->query($sql);
     <?php endwhile; ?>
   </div>
 </div>
+  <script src="js/fly-to-cart.js"></script>
   <?php include_once(__DIR__ . '/../frontend/layouts/partials/scripts.php'); ?>
   <?php include_once(__DIR__ . '/../frontend/layouts/partials/footer.php'); ?>
 </body>
