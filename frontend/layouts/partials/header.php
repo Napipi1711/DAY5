@@ -56,7 +56,7 @@
           <li class="nav-item"><a class="nav-link" href="#">Link</a></li>
           <li class="nav-item"><a class="nav-link disabled">Disabled</a></li>
         </ul>
-      <!--Cart-->
+   
         <div class="d-flex align-items-center me-3">
          <a class="text-white position-relative text-decoration-none" 
               id="cart-icon" 
