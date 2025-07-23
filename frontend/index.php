@@ -140,7 +140,10 @@ $result = $conn->query($sql);
           </div>
           <div class="card-footer bg-transparent border-top-0 text-center">
             <a href="/DAY5/frontend/pages/details.php?id=<?php echo $row['id']; ?>" class="btn btn-outline-secondary w-100 mb-2">Chi tiết</a>
-            <a href="#" class="btn btn-primary w-100">Add Cart</a>
+            <a href="#" class="btn btn-primary w-100 add-to-cart" 
+              data-img="/DAY5/assets/<?php echo htmlspecialchars($row['image_url']); ?>">
+              Add Cart
+            </a>
           </div>
         </div>
       </div>
