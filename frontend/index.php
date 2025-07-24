@@ -6,8 +6,8 @@
   <title>Trang chủ</title>
   
   <?php include_once(__DIR__ . '/../frontend/layouts/partials/header.php'); ?>
-   <link rel="stylesheet" href="css/fly-to-cart.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="stylesheet" href="css/fly-to-cart.css">  
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
@@ -21,7 +21,7 @@
     </div>
     <div class="carousel-inner">
       <div class="carousel-item active">
-        <img src="https://via.placeholder.com/1920x500?text=Slide+1" class="d-block w-100" alt="Slide 1">
+        <img src="../assets/slides/hinh1.jpg" class="d-block w-100" alt="Slide 1">
         <div class="container">
           <div class="carousel-caption text-start">
             <h1>Example headline.</h1>
@@ -31,7 +31,7 @@
         </div>
       </div>
       <div class="carousel-item">
-        <img src="../assets/slides/visa.jpg" class="d-block w-100" alt="Slide 2">
+        <img src="../assets/slides/hinh2.jpg" class="d-block w-100" alt="Slide 2">
         <div class="container">
           <div class="carousel-caption">
             <h1>Another example headline.</h1>
@@ -41,7 +41,7 @@
         </div>
       </div>
       <div class="carousel-item">
-        <img src="https://via.placeholder.com/1920x500?text=Slide+3" class="d-block w-100" alt="Slide 3">
+        <img src="../assets/slides/hinh3.jpg" class="d-block w-100" alt="Slide 3">
         <div class="container">
           <div class="carousel-caption text-end">
             <h1>One more for good measure.</h1>
@@ -139,19 +139,28 @@ $result = $conn->query($sql);
             <p class="card-text fw-bold text-danger"><?php echo number_format($row['price'], 0, ',', '.') ?> đ</p>
           </div>
           <div class="card-footer bg-transparent border-top-0 text-center">
-            <a href="/DAY5/frontend/pages/details.php?id=<?php echo $row['id']; ?>" class="btn btn-outline-secondary w-100 mb-2">Chi tiết</a>
-            <a href="#" class="btn btn-primary w-100 add-to-cart" 
-              data-img="/DAY5/assets/<?php echo htmlspecialchars($row['image_url']); ?>">
-              Add Cart
-            </a>
-          </div>
+ 
+  <a href="/DAY5/frontend/pages/details.php?id=<?php echo $row['id']; ?>" 
+     class="btn btn-outline-secondary w-100 mb-2">
+     Chi tiết
+  </a>
+
+ 
+  <a href="#" 
+     class="btn btn-primary w-100 add-to-cart"
+     data-id="<?php echo $row['id']; ?>"
+     data-name="<?php echo htmlspecialchars($row['name']); ?>"
+     data-price="<?php echo $row['price']; ?>"
+     data-img="/DAY5/assets/<?php echo htmlspecialchars($row['image_url'] ?? 'default.png'); ?>">
+     Add Cart
+  </a>
+</div>
         </div>
       </div>
     <?php endwhile; ?>
   </div>
 </div>
-
-   <div class="container my-5">
+      <div class="container my-5">
   <h2 class="text-center mb-4"> HUTECH</h2>
   <p class="text-center">
     <strong>475A Điện Biên Phủ, Quận Bình Thạnh, TP.HCM</strong>
@@ -165,8 +174,8 @@ $result = $conn->query($sql);
     </iframe>
   </div>
 </div>
-  
-  <script src="js/fly-to-cart.js"></script>
+
+<script src="js/fly-to-cart.js"></script>
   <?php include_once(__DIR__ . '/../frontend/layouts/partials/scripts.php'); ?>
   <?php include_once(__DIR__ . '/../frontend/layouts/partials/footer.php'); ?>
 </body>
