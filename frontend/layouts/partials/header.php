@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en" data-bs-theme="auto">
 <head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Carousel Template · Bootstrap v5.3</title>
@@ -56,25 +57,22 @@
           <li class="nav-item"><a class="nav-link" href="#">Link</a></li>
           <li class="nav-item"><a class="nav-link disabled">Disabled</a></li>
         </ul>
-   
         <div class="d-flex align-items-center me-3">
+       
          <a class="text-white position-relative text-decoration-none" 
-              id="cart-icon" 
-              data-bs-toggle="offcanvas" 
-              href="#offcanvasCart" 
-              role="button" 
-              aria-controls="offcanvasCart">
-              <i class="fas fa-shopping-cart fa-lg"></i>
-              <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger item-count">
-                <?php
-                session_start();
-                echo isset($_SESSION['cart']) ? array_sum(array_column($_SESSION['cart'], 'quantity')) : 0;
-                ?>
-              </span>
-            </a>
-
+  id="cart-icon"
+  href="/DAY5/frontend/pages/PlaceOrder.php">
+  <i class="fas fa-shopping-cart fa-lg"></i>
+  <span id="item-count" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger item-count">
+    <?php
+      if (session_status() === PHP_SESSION_NONE) {
+          session_start();
+      }
+      echo isset($_SESSION['cart']) ? array_sum(array_column($_SESSION['cart'], 'quantity')) : 0;
+    ?>
+  </span>
+</a>
         </div>
-        
         <form class="d-flex" role="search">
           <input class="form-control me-2" type="search" placeholder="Search">
           <button class="btn btn-outline-success" type="submit">Search</button>
@@ -84,3 +82,40 @@
   </nav>
 </header>
 <main>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const addButtons = document.querySelectorAll('.add-to-cart');
+
+  addButtons.forEach(button => {
+    button.addEventListener('click', function (e) {
+      e.preventDefault();
+
+      const id = this.getAttribute('data-id');
+      const name = this.getAttribute('data-name');
+      const price = this.getAttribute('data-price');
+      const image = this.getAttribute('data-img');
+
+      fetch('/DAY5/frontend/pages/addToCart.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: `id=${id}&name=${encodeURIComponent(name)}&price=${price}&image=${encodeURIComponent(image)}`
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.success) {
+          
+          const itemCount = document.getElementById('item-count');
+          if (itemCount) {
+            itemCount.textContent = data.count;
+          }
+        } else {
+          alert("Lỗi: " + data.message);
+        }
+      })
+      .catch(error => {
+        console.error("Lỗi khi thêm giỏ hàng:", error);
+      });
+    });
+  });
+});
+</script>
